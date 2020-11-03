@@ -5,11 +5,7 @@ const todos = {
 	getAllTodos: async (req, res) => {
 		let todos = []
 		try {
-				todos = await Model.Todos.findAll({
-					include: [{
-						model: Model.Comments
-					}]
-				})
+			todos = await Model.Todos.findAll()
 		} catch(e) {
 				console.log(e)
 		}
@@ -23,10 +19,7 @@ const todos = {
 			todo = await Model.Todos.findOne({
 				where: {
 					id: req.params.id
-				},
-				include: [{
-					model: Model.Comments
-				}]
+				}
 			})
 		} catch(e) {
 				console.log(e)
@@ -37,6 +30,8 @@ const todos = {
 
 	createTodo: async (req, res) => {
 		let todo = {}
+
+		console.log(req)
 
 		try {
 			
